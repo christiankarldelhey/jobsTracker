@@ -2,31 +2,13 @@
 const fs = require('fs');
 const path = require('path');
 
-// Read the amplify configuration from backend
-const teamProviderInfo = require('./amplify/team-provider-info.json');
-const backendConfig = require('./amplify/backend/backend-config.json');
-
-const env = process.env.AWS_BRANCH || 'dev';
-const envConfig = teamProviderInfo[env];
-
-if (!envConfig) {
-  console.error(`Environment ${env} not found in team-provider-info.json`);
-  process.exit(1);
-}
-
-const awsRegion = envConfig.awscloudformation.Region;
-const apiConfig = backendConfig.api?.jobtracker;
-
-if (!apiConfig) {
-  console.error('API configuration not found');
-  process.exit(1);
-}
-
+// Amplify configuration for production deployment
 const config = {
-  aws_project_region: awsRegion,
-  aws_cognito_region: awsRegion,
-  aws_user_pools_id: envConfig.categories.auth.jobtracker12ce443c.userPoolId,
-  aws_user_pools_web_client_id: envConfig.categories.auth.jobtracker12ce443c.appClientId,
+  aws_project_region: 'us-east-1',
+  aws_cognito_identity_pool_id: 'us-east-1:f7703fa1-241b-4048-8984-d9a5c05df28e',
+  aws_cognito_region: 'us-east-1',
+  aws_user_pools_id: 'us-east-1_Hy9N6LICH',
+  aws_user_pools_web_client_id: '1edlemngekcceckfqufbfbd6q0',
   oauth: {},
   aws_cognito_username_attributes: ['EMAIL'],
   aws_cognito_social_providers: [],
@@ -38,8 +20,8 @@ const config = {
     passwordPolicyCharacters: []
   },
   aws_cognito_verification_mechanisms: ['EMAIL'],
-  aws_appsync_graphqlEndpoint: envConfig.categories.api.jobtracker.GraphQLAPIEndpointOutput,
-  aws_appsync_region: awsRegion,
+  aws_appsync_graphqlEndpoint: 'https://a2jgt7bsjzaclkd6lbgel2z624.appsync-api.us-east-1.amazonaws.com/graphql',
+  aws_appsync_region: 'us-east-1',
   aws_appsync_authenticationType: 'AMAZON_COGNITO_USER_POOLS'
 };
 
