@@ -4,6 +4,7 @@ frontend:
     preBuild:
       commands:
         - npm ci
+        - node generate-amplify-config.js
     build:
       commands:
         - npm run build
