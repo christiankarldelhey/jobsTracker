@@ -1,0 +1,27 @@
+type Profile @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  userId: String!
+  name: String!
+  description: String
+  color: String!
+  isDefault: Boolean!
+  createdAt: AWSDateTime!
+}
+
+type JobPosting @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  userId: String!
+  profileId: String @index(name: "byProfile", sortKeyFields: ["analyzedAt"])
+  text: String!
+  analyzedAt: AWSDateTime!
+  postingDate: AWSDateTime
+  companyName: String
+  url: String
+  skills: [String!]!
+  requiresDegree: Boolean!
+  workMode: String!
+  location: String!
+  applied: Boolean!
+  applicationDate: AWSDateTime
+  notes: String
+}

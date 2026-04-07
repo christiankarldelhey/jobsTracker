@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-jobtracker-dev-c8997-authRole",
+      "UnauthRoleArn": "arn:aws:iam::195580719134:role/amplify-jobtracker-dev-c8997-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::195580719134:role/amplify-jobtracker-dev-c8997-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-jobtracker-dev-c8997-deployment",
+      "UnauthRoleName": "amplify-jobtracker-dev-c8997-unauthRole",
+      "StackName": "amplify-jobtracker-dev-c8997",
+      "StackId": "arn:aws:cloudformation:us-east-1:195580719134:stack/amplify-jobtracker-dev-c8997/86fabe40-3278-11f1-8460-1296f99f1e59",
+      "AmplifyAppId": "de9q8qvg3xit0"
+    },
+    "categories": {
+      "auth": {
+        "jobtracker12ce443c": {}
+      },
+      "api": {
+        "jobtracker": {}
+      }
+    }
+  }
+}

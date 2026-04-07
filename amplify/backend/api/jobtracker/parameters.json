@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "jobtracker",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authjobtracker12ce443c",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

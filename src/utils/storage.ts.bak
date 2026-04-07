@@ -1,0 +1,59 @@
+import { JobPosting } from '../types';
+
+const STORAGE_KEY = 'frontend-job-skills-history';
+
+export const saveJobPosting = (posting: JobPosting): void => {
+  try {
+    const history = getJobPostingsHistory();
+    history.push(posting);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+  } catch (error) {
+    console.error('Error saving job posting:', error);
+  }
+};
+
+export const getJobPostingsHistory = (): JobPosting[] => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (!stored) return [];
+    
+    const parsed = JSON.parse(stored);
+    return parsed.map((p: any) => ({
+      ...p,
+      analyzedAt: new Date(p.analyzedAt),
+      postingDate: p.postingDate ? new Date(p.postingDate) : undefined,
+      applicationDate: p.applicationDate ? new Date(p.applicationDate) : undefined,
+      applied: p.applied || false,
+    }));
+  } catch (error) {
+    console.error('Error loading job postings history:', error);
+    return [];
+  }
+};
+
+export const updateJobPosting = (updatedPosting: JobPosting): void => {
+  try {
+    const history = getJobPostingsHistory();
+    const index = history.findIndex(p => p.id === updatedPosting.id);
+    
+    if (index !== -1) {
+      history[index] = updatedPosting;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+    }
+  } catch (error) {
+    console.error('Error updating job posting:', error);
+  }
+};
+
+export const clearHistory = (): void => {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch (error) {
+    console.error('Error clearing history:', error);
+  }
+};
+
+export const getAllSkillsFromHistory = (): string[][] => {
+  const history = getJobPostingsHistory();
+  return history.map(posting => posting.skills);
+};
