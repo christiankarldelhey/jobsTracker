@@ -111,7 +111,7 @@ export const authSignOut = async () => {
 export const authGetCurrentUser = async (): Promise<AuthUser | null> => {
   try {
     const user = await getCurrentUser();
-    const session = await fetchAuthSession();
+    await fetchAuthSession();
     
     return {
       userId: user.userId,

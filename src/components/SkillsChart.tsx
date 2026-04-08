@@ -1,4 +1,4 @@
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { SkillCount } from '../types';
 
 interface SkillsChartProps {
@@ -79,7 +79,6 @@ export const SkillsChart = ({ skills, totalPostings, onSkillClick }: SkillsChart
       {/* Gráfico por cada categoría */}
       {categoriesWithSkills.map(([category, categorySkills]) => {
         const topSkills = categorySkills.slice(0, 10); // Top 10 por categoría
-        const totalInCategory = categorySkills.reduce((sum, skill) => sum + skill.count, 0);
 
         return (
           <div key={category} className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
